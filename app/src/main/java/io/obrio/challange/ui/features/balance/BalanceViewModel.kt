@@ -9,8 +9,7 @@ import io.obrio.challange.network.client.BitcoinRateApiClient
 import io.obrio.challange.repository.BitcoinRepository
 import io.obrio.challange.ui.features.balance.data.Transaction
 import io.obrio.challange.ui.features.balance.data.TransactionGroup
-import io.obrio.challange.ui.features.balance.enum.TransactionCategory
-import io.obrio.challange.ui.features.balance.enum.TransactionType
+import io.obrio.challange.ui.features.balance.enums.TransactionCategory
 import io.obrio.challange.ui.features.balance.manager.BitcoinRateCacheManager
 import io.obrio.challange.ui.features.balance.mvi.BalanceEffect
 import io.obrio.challange.ui.features.balance.mvi.BalanceIntent
@@ -46,6 +45,26 @@ class BalanceViewModel @Inject constructor(
     private fun handleError(error: Throwable) {
         error.message?.let { message ->
             publishEffect(BalanceEffect.ShowToast(message))
+        }
+    }
+
+    fun updateBalanceAndTransactions() {
+        viewModelScope.launch {
+            val balance = bitcoinRepository.getBalance()
+
+            val rate = if (cacheManager.shouldFetch()) {
+                bitcoinRateApiClient.getBitcoinRate().bitcoin.usd.also {
+                    cacheManager.updateFetchTimestampAndRate(it.toPlainString())
+                }
+            } else {
+                cacheManager.getLastRate()?.toBigDecimal()
+            }
+
+            rate?.let {
+                updateUI(balance, it)
+            }
+
+            reloadTransactions()
         }
     }
 
@@ -152,7 +171,6 @@ class BalanceViewModel @Inject constructor(
                         amount = it.amount,
                         category = TransactionCategory.parse(it.category),
                         time = DateUtils.formatDateTime(Date(it.timestamp)),
-                        type = TransactionType.INCOME
                     )
                 }
             )
@@ -168,9 +186,5 @@ class BalanceViewModel @Inject constructor(
                 usdBalance = (balance * rate).formattedPrice()
             )
         }
-    }
-
-    override fun addTransaction() {
-        TODO("Not yet implemented")
     }
 }

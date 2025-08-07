@@ -1,4 +1,4 @@
-package io.obrio.challange.ui.features.balance.navigation
+package io.obrio.challange.ui.features.add_transaction.navigation
 
 import android.widget.Toast
 import androidx.compose.runtime.LaunchedEffect
@@ -7,42 +7,33 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import io.obrio.challange.core.extensions.getOnce
 import io.obrio.challange.core.navigation.Navigator
-import io.obrio.challange.ui.features.add_transaction.navigation.ADD_TRANSACTION_NAV_KEY
-import io.obrio.challange.ui.features.add_transaction.navigation.AddTransactionResult
-import io.obrio.challange.ui.features.balance.BalanceScreen
-import io.obrio.challange.ui.features.balance.BalanceViewModel
-import io.obrio.challange.ui.features.balance.mvi.BalanceEffect
+import io.obrio.challange.ui.features.add_transaction.AddTransactionScreen
+import io.obrio.challange.ui.features.add_transaction.AddTransactionViewModel
+import io.obrio.challange.ui.features.add_transaction.mvi.AddTransactionEffect
 import kotlinx.serialization.Serializable
 
-fun NavGraphBuilder.balanceScreen(
+const val ADD_TRANSACTION_NAV_KEY = "ADD_TRANSACTION_NAV_KEY"
+
+fun NavGraphBuilder.addTransactionScreen(
     navigator: Navigator
 ) {
-    composable<Balance> { entry ->
-        val viewModel = hiltViewModel<BalanceViewModel>()
+    composable<AddTransaction> {
+        val viewModel = hiltViewModel<AddTransactionViewModel>()
         val state = viewModel.state.collectAsStateWithLifecycle()
         val context = LocalContext.current
 
         LaunchedEffect(Unit) {
             viewModel.effect.collect { effect ->
                 when (effect) {
-                    is BalanceEffect.ShowToast -> {
+                    is AddTransactionEffect.ShowToast -> {
                         Toast.makeText(context, effect.text, Toast.LENGTH_LONG).show()
                     }
                 }
             }
         }
 
-        LaunchedEffect(Unit) {
-            val result = entry.getOnce<AddTransactionResult>(ADD_TRANSACTION_NAV_KEY)
-
-            result?.let {
-                viewModel.updateBalanceAndTransactions()
-            }
-        }
-
-        BalanceScreen(
+        AddTransactionScreen(
             state = state.value,
             intent = viewModel,
             navigator = navigator
@@ -51,4 +42,4 @@ fun NavGraphBuilder.balanceScreen(
 }
 
 @Serializable
-data object Balance
+data object AddTransaction

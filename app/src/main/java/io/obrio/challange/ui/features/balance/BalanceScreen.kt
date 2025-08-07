@@ -85,7 +85,7 @@ fun BalanceScreen(
             Column(
                 modifier = Modifier.padding(16.dp)
             ) {
-                // Add Transaction Button
+
                 Button(
                     onClick = navigator::navToAddTransaction,
                     modifier = Modifier.fillMaxWidth(),
@@ -116,7 +116,6 @@ fun BalanceScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Transactions List
                 TransactionsList(
                     transactions = state.transactions
                 )

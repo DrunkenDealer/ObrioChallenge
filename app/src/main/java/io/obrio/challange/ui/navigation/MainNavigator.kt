@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import io.obrio.challange.core.extensions.navigateUpWithResult
 import io.obrio.challange.core.navigation.Navigator
+import io.obrio.challange.ui.features.add_transaction.navigation.AddTransaction
 
 class MainNavigator(
     val navController: NavHostController
@@ -20,7 +21,7 @@ class MainNavigator(
     }
 
     override fun navToAddTransaction(navOptions: NavOptions?) {
-        TODO("Not yet implemented")
+        navController.navigate(AddTransaction, navOptions)
     }
 }
 

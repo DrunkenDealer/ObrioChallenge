@@ -21,7 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.obrio.challange.core.extensions.isPositive
-import io.obrio.challange.ui.features.balance.enum.TransactionCategory
+import io.obrio.challange.ui.features.balance.enums.TransactionCategory
 import java.math.BigDecimal
 
 @Composable

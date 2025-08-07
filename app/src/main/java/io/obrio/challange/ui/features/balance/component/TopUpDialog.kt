@@ -56,7 +56,7 @@ fun TopUpDialog(
                         val dotCount = filtered.count { it == '.' }
                         if (dotCount > 1) return@OutlinedTextField
 
-                        if (filtered.length > 5) return@OutlinedTextField
+                        if (filtered.length > 8) return@OutlinedTextField
 
                         onValueChange(filtered)
                     },
@@ -84,6 +84,7 @@ fun TopUpDialog(
                     Button(
                         onClick = {
                             topUpAmount.toDoubleOrNull()?.let { amount ->
+                                if (amount == 0.0) return@Button
                                 onTopUp.invoke(amount)
                             }
                         },

@@ -1,4 +1,4 @@
-package io.obrio.challange.ui.features.balance.enum
+package io.obrio.challange.ui.features.balance.enums
 
 enum class TransactionCategory(val displayName: String, val emoji: String) {
     GROCERIES("Groceries", "🛒"),
