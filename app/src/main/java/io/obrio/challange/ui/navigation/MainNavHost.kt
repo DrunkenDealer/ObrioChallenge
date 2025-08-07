@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import io.obrio.challange.core.navigation.Navigator
+import io.obrio.challange.ui.features.balance.navigation.balanceScreen
 
 @Composable
 fun MainNavHost(
@@ -19,6 +20,6 @@ fun MainNavHost(
         navController = navController,
         startDestination = startScreen
     ) {
-
+        balanceScreen(navigator)
     }
 }

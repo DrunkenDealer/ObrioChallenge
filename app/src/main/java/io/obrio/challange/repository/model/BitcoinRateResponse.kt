@@ -6,12 +6,12 @@ import java.math.BigDecimal
 
 @JsonClass(generateAdapter = true)
 data class BitcoinRateResponse(
-    @Json(name = "Bitcoin")
-    val bitcoin: Usd
+    @Json(name = "Bitcoin") val bitcoin: Bitcoin
 ) {
 
     @JsonClass(generateAdapter = true)
-    data class Usd(
-        val usd: BigDecimal
+    data class Bitcoin(
+        @Json(name = "usd") val usd: BigDecimal
     )
 }
+

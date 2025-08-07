@@ -23,7 +23,7 @@ class MainNavigator(
         TODO("Not yet implemented")
     }
 
-    override fun navToAddBalance(navOptions: NavOptions?) {
+    override fun navToAddBalance(amount: Double, navOptions: NavOptions?) {
         TODO("Not yet implemented")
     }
 

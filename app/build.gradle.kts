@@ -20,7 +20,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "API_URL", "\"https://api.coingecko.com/api/v3/simple/price\"")
+        buildConfigField("String", "API_URL", "\"https://api.coingecko.com/\"")
         buildConfigField("String", "API_KEY", "\"CG-hKLBbarUnwFayPMzuio7RpDW\"")
 
     }
@@ -51,6 +51,7 @@ dependencies {
 
     // Dependency Injection
     implementation(libs.hilt.android)
+    implementation(libs.androidx.foundation.layout.android)
     ksp(libs.hilt.compiler)
 
     // Navigation

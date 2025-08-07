@@ -9,7 +9,7 @@ interface Navigator {
     fun navigateUp()
     fun <T>navigateUpWithResult(key: String, result: T)
     fun navToAddTransaction(navOptions: NavOptions? = null)
-    fun navToAddBalance(navOptions: NavOptions? = null)
+    fun navToAddBalance(amount: Double, navOptions: NavOptions? = null)
 
     companion object {
         val Empty: Navigator = EmptyNavigator()
@@ -20,5 +20,5 @@ private class EmptyNavigator: Navigator {
     override fun navigateUp() = Unit
     override fun <T> navigateUpWithResult(key: String, result: T)= Unit
     override fun navToAddTransaction(navOptions: NavOptions?)= Unit
-    override fun navToAddBalance(navOptions: NavOptions?)= Unit
+    override fun navToAddBalance(amount: Double, navOptions: NavOptions?)= Unit
 }
