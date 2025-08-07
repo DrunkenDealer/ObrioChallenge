@@ -1,4 +1,4 @@
-package io.obrio.challange.repository.retrofit.serializers
+package io.obrio.challange.network.retrofit.serializers
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson

@@ -22,11 +22,6 @@ class MainNavigator(
     override fun navToAddTransaction(navOptions: NavOptions?) {
         TODO("Not yet implemented")
     }
-
-    override fun navToAddBalance(amount: Double, navOptions: NavOptions?) {
-        TODO("Not yet implemented")
-    }
-
 }
 
 @Composable

@@ -5,7 +5,7 @@ import androidx.compose.runtime.Stable
 @Stable
 interface BalanceIntent {
 
-    fun addBalance()
+    fun updateBalance(amount: Double)
     fun addTransaction()
 
     companion object {
@@ -14,6 +14,6 @@ interface BalanceIntent {
 }
 
 private object EmptyBalanceIntent : BalanceIntent {
-    override fun addBalance() = Unit
+    override fun updateBalance(amount: Double) = Unit
     override fun addTransaction() = Unit
 }

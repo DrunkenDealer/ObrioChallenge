@@ -11,45 +11,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import io.obrio.challange.ui.features.balance.data.Transaction
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import io.obrio.challange.ui.features.balance.data.TransactionGroup
 
 @Composable
-fun TransactionsList(transactions: List<Transaction>) {
-    val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val timeFormatter = SimpleDateFormat("HH:mm", Locale.getDefault())
-
-    val groupedTransactions = transactions
-        .sortedByDescending { it.timestamp }
-        .groupBy { dateFormatter.format(Date(it.timestamp)) }
+fun TransactionsList(
+    transactions: List<TransactionGroup>
+) {
 
     LazyColumn {
-        groupedTransactions.forEach { (date, dayTransactions) ->
+        transactions.forEach { group ->
             item {
-                val displayDate = when {
-                    date == dateFormatter.format(Date()) -> "Today"
-                    date == dateFormatter.format(Date(System.currentTimeMillis() - 86400000)) -> "Yesterday"
-                    else -> SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(dateFormatter.parse(date))
-                }
-
                 Text(
-                    text = displayDate,
+                    text = group.dateLabel,
                     fontWeight = FontWeight.SemiBold,
                     color = Color.Gray,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
             }
 
-            items(dayTransactions) { transaction ->
+            items(group.transactions) { transaction ->
                 TransactionItem(
-                    transaction = transaction,
-                    time = timeFormatter.format(Date(transaction.timestamp))
+                    amount = transaction.amount,
+                    category = transaction.category,
+                    time = transaction.time
                 )
             }
 
-            item { Spacer(modifier = Modifier.height(8.dp)) }
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
-package io.obrio.challange.repository.client
+package io.obrio.challange.network.client
 
-import io.obrio.challange.repository.api.BitcoinRateApiInterface
-import io.obrio.challange.repository.model.BitcoinRateResponse
+import io.obrio.challange.network.api.BitcoinRateApiInterface
+import io.obrio.challange.network.model.BitcoinRateResponse
 import javax.inject.Inject
 
 class BitcoinRateApiClient @Inject constructor(

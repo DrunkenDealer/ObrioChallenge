@@ -7,9 +7,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.obrio.challange.BuildConfig
-import io.obrio.challange.repository.api.BitcoinRateApiInterface
-import io.obrio.challange.repository.retrofit.serializers.BigDecimalSerializer
-import io.obrio.challange.repository.retrofit.interceptors.HeadersInterceptor
+import io.obrio.challange.network.api.BitcoinRateApiInterface
+import io.obrio.challange.network.retrofit.serializers.BigDecimalSerializer
+import io.obrio.challange.network.retrofit.interceptors.HeadersInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

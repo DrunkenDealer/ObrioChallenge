@@ -20,10 +20,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.obrio.challange.ui.features.balance.data.Transaction
+import io.obrio.challange.core.extensions.isPositive
+import io.obrio.challange.ui.features.balance.enum.TransactionCategory
+import java.math.BigDecimal
 
 @Composable
-fun TransactionItem(transaction: Transaction, time: String) {
+fun TransactionItem(
+    amount: BigDecimal,
+    category: TransactionCategory,
+    time: String
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,7 +52,7 @@ fun TransactionItem(transaction: Transaction, time: String) {
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = transaction.category.emoji,
+                    text = category.emoji,
                     fontSize = 20.sp
                 )
             }
@@ -55,7 +61,7 @@ fun TransactionItem(transaction: Transaction, time: String) {
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = transaction.category.displayName,
+                    text = category.displayName,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 16.sp
                 )
@@ -67,9 +73,9 @@ fun TransactionItem(transaction: Transaction, time: String) {
             }
 
             Text(
-                text = "${if (transaction.amount > 0) "+" else ""}₿ ${String.format("%.8f", Math.abs(transaction.amount))}",
+                text = "${if (amount.isPositive()) "+" else ""}₿ $amount",
                 fontWeight = FontWeight.Bold,
-                color = if (transaction.amount > 0) Color(0xFF4CAF50) else Color(0xFFF44336),
+                color = if (amount.isPositive()) Color(0xFF4CAF50) else Color(0xFFF44336),
                 fontSize = 14.sp
             )
         }

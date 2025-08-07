@@ -1,4 +1,4 @@
-package io.obrio.challange.repository.model
+package io.obrio.challange.network.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

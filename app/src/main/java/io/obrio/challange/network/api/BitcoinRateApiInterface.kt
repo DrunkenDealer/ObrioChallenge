@@ -1,6 +1,6 @@
-package io.obrio.challange.repository.api
+package io.obrio.challange.network.api
 
-import io.obrio.challange.repository.model.BitcoinRateResponse
+import io.obrio.challange.network.model.BitcoinRateResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

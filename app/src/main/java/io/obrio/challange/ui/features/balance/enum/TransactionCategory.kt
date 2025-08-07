@@ -6,5 +6,11 @@ enum class TransactionCategory(val displayName: String, val emoji: String) {
     ELECTRONICS("Electronics", "📱"),
     RESTAURANT("Restaurant", "🍽️"),
     OTHER("Other", "💳"),
-    TOPUP("Top Up", "💰")
+    TOPUP("Top Up", "💰");
+
+    companion object {
+        fun parse(name: String): TransactionCategory {
+            return entries.first { it.name == name }
+        }
+    }
 }

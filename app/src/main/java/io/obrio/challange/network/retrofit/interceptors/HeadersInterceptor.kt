@@ -1,4 +1,4 @@
-package io.obrio.challange.repository.retrofit.interceptors
+package io.obrio.challange.network.retrofit.interceptors
 
 import io.obrio.challange.BuildConfig
 import okhttp3.Interceptor
