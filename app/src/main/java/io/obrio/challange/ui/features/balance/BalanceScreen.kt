@@ -117,7 +117,9 @@ fun BalanceScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 TransactionsList(
-                    transactions = state.transactions
+                    transactions = state.transactions,
+                    isLoading = state.isLoadingTransactions,
+                    onLoadMore = intent::loadMore
                 )
             }
         }

@@ -14,6 +14,7 @@ import io.obrio.challange.ui.features.balance.manager.BitcoinRateCacheManager
 import io.obrio.challange.ui.features.balance.mvi.BalanceEffect
 import io.obrio.challange.ui.features.balance.mvi.BalanceIntent
 import io.obrio.challange.ui.features.balance.mvi.BalanceState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.util.Date
@@ -109,6 +110,8 @@ class BalanceViewModel @Inject constructor(
         viewModelScope.launch {
             updateState { copy(isLoadingTransactions = true) }
 
+            delay(1000)
+
             val newItems = bitcoinRepository.getPagedTransactions(
                 page = currentPage,
                 pageSize = pageSize
@@ -177,6 +180,9 @@ class BalanceViewModel @Inject constructor(
         }
     }
 
+    override fun loadMore() {
+        loadMoreTransactions()
+    }
 
     private fun updateUI(balance: BigDecimal, rate: BigDecimal) {
         updateState {

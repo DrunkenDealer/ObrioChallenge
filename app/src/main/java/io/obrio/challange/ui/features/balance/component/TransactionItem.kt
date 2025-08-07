@@ -41,7 +41,7 @@ fun TransactionItem(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Category Icon
+
             Box(
                 modifier = Modifier
                     .size(48.dp)
@@ -73,7 +73,7 @@ fun TransactionItem(
             }
 
             Text(
-                text = "${if (amount.isPositive()) "+" else ""}₿ $amount",
+                text = "${if (amount.isPositive()) "+" else ""}$amount ₿",
                 fontWeight = FontWeight.Bold,
                 color = if (amount.isPositive()) Color(0xFF4CAF50) else Color(0xFFF44336),
                 fontSize = 14.sp
