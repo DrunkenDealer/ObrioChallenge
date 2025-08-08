@@ -88,6 +88,7 @@ fun AddTransactionScreen(
             AddCategoryButton(
                 canAdd = state.canAddTransaction,
                 onClick = {
+                    if (state.enteredAmount.isEmpty()) return@AddCategoryButton
                     intent.addTransaction(state.enteredAmount.toDouble(), selectedCategory)
                     navigator.navigateUpWithResult(
                         key = ADD_TRANSACTION_NAV_KEY,
